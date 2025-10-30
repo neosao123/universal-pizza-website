@@ -15,11 +15,11 @@ import Dashboard from '../../pages/userPages/Dashboard';
 
 const Layout = () => {
   return (
-    <div>
+    <div className="min-h-screen flex flex-col">
       <ToastContainer />
       <Navbar />
-     
-      <main>
+
+      <main className="flex-1 pt-16 sm:pt-20 md:pt-24 lg:pt-20">
         <Outlet /> {/* Child routes will render here */}
       </main>
       <Footer />

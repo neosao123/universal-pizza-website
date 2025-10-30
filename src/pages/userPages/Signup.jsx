@@ -5,11 +5,9 @@ import { useSelector } from "react-redux";
 const Signup = () => {
   const mode = useSelector((state) => state.theme.mode);
 
-  const [designations, setDesignations] = useState([]);
   const [formData, setFormData] = useState({
     f_name: "",
     l_name: "",
-    design_id: "",
     email: "",
     mobile_no: "",
     birth_date: "",
@@ -107,37 +105,7 @@ console.log(formData);
             mode={mode}
           />
 
-          {/* Designation Dropdown */}
-          <div>
-            <label
-              className={`block text-sm font-medium mb-1 ${
-                mode === "light" ? "text-gray-700" : "text-gray-300"
-              }`}
-            >
-              Designation
-            </label>
-            <select
-              name="design_id"
-              value={formData.design_id}
-              onChange={handleChange}
-              required
-              className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:outline-none ${
-                mode === "light"
-                  ? "border-gray-300 focus:ring-indigo-400"
-                  : "border-gray-600 focus:ring-yellow-400 bg-gray-700 text-white"
-              }`}
-            >
-              <option value="">Select Designation</option>
-              {designations.map((design) => (
-                <option
-                  key={design.design_id }
-                  value={design.design_id }
-                >
-                  {design.designation}
-                </option>
-              ))}
-            </select>
-          </div>
+          
 
           {/* Email */}
           <InputField

@@ -61,5 +61,106 @@ export const slides = [
       image:
         "/src/assets/slider/pizaimg9.jpeg",
     },
-   
+
   ];
+
+export const grid = [
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Margherita Pizza",
+    description: "Classic delight with 100% real mozzarella cheese.",
+    rating: 4,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Veggie Supreme",
+    description: "Loaded with crunchy veggies and flavorful cheese.",
+    rating: 5,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Pepperoni Feast",
+    description: "A treat for pepperoni lovers with extra cheese.",
+    rating: 3,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Farmhouse Pizza",
+    description: "Delicious mix of fresh farm veggies on a cheesy base.",
+    rating: 5,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Paneer Makhani",
+    description: "Soft paneer cubes in rich makhani Classic delight sauce.",
+    rating: 4,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "BBQ Chicken Pizza",
+    description: "Tender chicken with tangy BBQ Classic delight sauce.",
+    rating: 5,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Margherita Pizza",
+    description: "Classic delight with 100% real mozzarella cheese.",
+    rating: 4,
+  },
+  {
+    image: "/src/assets/catagory/Margherita pizaa.jpeg",
+    title: "Veggie Supreme",
+    description: "Loaded with crunchy veggies and flavorful cheese.",
+    rating: 5,
+  },
+];
+export const testimonials = [
+    {
+        id: 1,
+        stars: 5,
+        quote: "“You made it so simple. My new site is so much faster and easier to work with than my old site, make the change.”",
+        name: "Leslie Alexander",
+        role: "Freelance React Developer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png"
+    },
+    {
+        id: 2,
+        stars: 5,
+        quote: "“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”",
+        name: "Jacob Jones",
+        role: "Digital Marketer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-2.png"
+    },
+    {
+        id: 3,
+        stars: 5,
+        quote: "“I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.”",
+        name: "Jenny Wilson",
+        role: "Graphic Designer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-female.png"
+  },
+    {
+        id: 1,
+        stars: 5,
+        quote: "“You made it so simple. My new site is so much faster and easier to work with than my old site, make the change.”",
+        name: "Leslie Alexander",
+        role: "Freelance React Developer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-1.png"
+    },
+    {
+        id: 2,
+        stars: 5,
+        quote: "“Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.”",
+        name: "Jacob Jones",
+        role: "Digital Marketer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-male-2.png"
+    },
+    {
+        id: 3,
+        stars: 5,
+        quote: "“I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.”",
+        name: "Jenny Wilson",
+        role: "Graphic Designer",
+        image: "https://cdn.rareblocks.xyz/collection/clarity/images/testimonial/4/avatar-female.png"
+    }
+];

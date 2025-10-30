@@ -1,88 +1,147 @@
 import React from "react";
+import { motion } from "framer-motion";
+import smallimg from "../../assets/catagory/Cheese Burst.jpeg"
+import bigimg  from "../../assets/catagory/non-veg pizaa.jpeg"
 
 const About = () => {
   return (
-    <>
-      {/* About Section */}
-      <section className="py-20 md:py-28 bg-gradient-to-b from-amber-50 via-white to-amber-50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-amber-900 mb-4">
-              Our Canadian Story
-            </h2>
-            <p className="text-lg text-gray-700 max-w-3xl mx-auto">
-              From the heart of Toronto to homes across Canada — Maple Leaf
-              Pizzeria has been crafting authentic Canadian pizza experiences
-              since 1998.
-            </p>
-          </div>
+    <section className="py-5 lg:py-5">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="text-center mb-8 lg:mb-10"
+        >
+          <h1 className="text-4xl sm:text-5xl p-5 lg:text-6xl font-bold text-[#D32F2F] ">
+            About Us
+          </h1>
+          <p className="text-xl sm:text-2xl text-gray-600 max-w-3xl mx-auto font-medium font-pj">
+            Discover our passion for crafting delicious, 100% vegetarian pizzas that delight every palate.
+          </p>
+        </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-14 items-center">
-            {/* Left Card */}
-            <div className="relative group">
-              <div className="absolute -inset-1 bg-gradient-to-r from-amber-400 to-red-300 rounded-3xl blur opacity-25 group-hover:opacity-40 transition duration-500"></div>
-              <div className="relative bg-white rounded-3xl p-10 shadow-lg transition-all duration-500 group-hover:shadow-2xl">
-                <h3 className="text-2xl md:text-3xl font-serif font-bold text-amber-900 mb-6">
-                  From Our Family to Yours
-                </h3>
-                <p className="text-gray-700 mb-4 leading-relaxed">
-                  Since 1998, Maple Leaf Pizzeria has been serving the community
-                  with pride. Founded by the Rossi family in Toronto, we believe
-                  in creating more than just pizza — we create memories around
-                  the dinner table.
-                </p>
-                <p className="text-gray-700 mb-6 leading-relaxed">
-                  Our commitment to quality means using 100% Canadian-grown
-                  wheat for our dough, locally sourced vegetables, and premium
-                  Canadian cheeses. We proudly support local farmers and
-                  producers.
-                </p>
-                <div className="flex items-center space-x-3 text-green-700 font-medium">
-                  <span className="text-xl">🍁</span>
-                  <span>Fresh, Local Ingredients — Always Canadian</span>
+        <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          {/* Image Section */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true }}
+            className="w-full lg:w-1/2"
+          >
+            <div className="relative">
+              {/* Decorative Background */}
+              <div className="absolute inset-0 rounded-3xl -rotate-3 scale-105 -z-10" />
+              
+              {/* Main Image Container */}
+               <div className="relative grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+      {/* Large Main Image */}
+      <motion.div
+        className="relative"
+        whileHover={{ scale: 1.02 }}
+        transition={{ duration: 0.3 }}
+      >
+        <img
+          src={bigimg}
+          alt="Delicious Pizza"
+          loading="lazy"
+          className="w-full h-64 sm:h-80 lg:h-96  object-fill rounded-2xl shadow-xl"
+        />
+        {/* Decorative Badge */}
+        <div className="absolute top-3 right-3 bg-[#D32F2F] text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+          100% Veg
+        </div>
+      </motion.div>
+
+      {/* Small Image */}
+      <motion.div
+        className="flex items-center justify-center"
+        whileHover={{ scale: 1.05 }}
+        transition={{ duration: 0.3 }}
+      >
+        <img
+          src={smallimg}
+          alt="Pizza Slice"
+          loading="lazy"
+          className="w-40 h-40 sm:w-48 sm:h-48 object-cover rounded-xl shadow-lg border-4 border-white"
+        />
+      </motion.div>
+    </div>
+            </div>
+          </motion.div>
+
+          {/* Text Content */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="w-full lg:w-1/2"
+          >
+            <div className="space-y-6">
+              <div className="space-y-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 font-pj">
+                  Crafting Pizza Perfection Since 2010
+                </h2>
+                
+                <div className="space-y-4 text-gray-700 text-lg leading-relaxed font-pj">
+                  <p>
+                    At <span className="font-semibold text-[#E64A19] font-pj">PanjabPizza</span>,
+                    we're passionate about crafting delicious, 100% vegetarian pizzas
+                    that bring together bold, flavorful ingredients to create a truly
+                    satisfying experience.
+                  </p>
+
+                  <p>
+                    Every pizza is made with care, blending tradition with creativity
+                    to please every palate. From timeless classics to signature creations,
+                    we're dedicated to delivering exceptional quality, taste, and service.
+                  </p>
+
+                  <p>
+                    What started as a small local kitchen has grown into a favorite
+                    destination for pizza lovers who crave something unique, wholesome,
+                    and made with love.
+                  </p>
                 </div>
               </div>
-            </div>
 
-            {/* Right Info Blocks */}
-            <div className="space-y-8">
-              <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition duration-500 border border-amber-100">
-                <h4 className="text-2xl font-bold text-amber-900 mb-3">
-                  Our Mission
-                </h4>
-                <p className="text-gray-700 leading-relaxed">
-                  To bring families and friends together through delicious,
-                  high-quality pizza made with Canadian pride and served with
-                  genuine hospitality.
-                </p>
+              {/* Features */}
+              <div className="grid grid-cols-2 gap-4 py-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-[#D32F2F] rounded-full"></div>
+                  <span className="text-gray-700 font-medium font-pj">Fresh Ingredients</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-[#D32F2F] rounded-full"></div>
+                  <span className="text-gray-700 font-medium font-pj">Homemade Dough</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-[#D32F2F] rounded-full"></div>
+                  <span className="text-gray-700 font-medium font-pj">Family Recipes</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-[#D32F2F] rounded-full"></div>
+                  <span className="text-gray-700 font-medium font-pj">Eco-Friendly</span>
+                </div>
               </div>
 
-              <div className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl transition duration-500 border border-amber-100">
-                <h4 className="text-2xl font-bold text-amber-900 mb-3">
-                  Community First
-                </h4>
-                <p className="text-gray-700 leading-relaxed">
-                  We're proud supporters of local sports teams, schools, and
-                  community events. Because to us, you're not just customers —
-                  you're neighbours.
-                </p>
-              </div>
+              {/* CTA Button */}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="bg-[#D32F2F] text-white font-semibold px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 focus:outline-none focus:ring-4 focus:ring-red-300"
+              >
+               Know More →
+              </motion.button>
             </div>
-          </div>
-
-          {/* Bottom Highlight */}
-          <div className="mt-20 text-center">
-            <p className="text-lg text-gray-600 italic">
-              “Crafted with Canadian ingredients, baked with love, served with
-              pride.”
-            </p>
-            <div className="mt-4 flex justify-center">
-              <div className="h-1 w-32 bg-gradient-to-r from-amber-400 to-red-400 rounded-full"></div>
-            </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

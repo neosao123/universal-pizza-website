@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { UAParser } from "ua-parser-js";  // ✅ fix here
+import { UAParser } from "ua-parser-js";
 
 const Login = () => {
   const [formData, setFormData] = useState({
@@ -15,17 +15,13 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
-      // Get browser/device info
       const parser = new UAParser();
       const resultData = parser.getResult();
 
-      // Get IP + Location Info
       const res = await axios.get("https://ipapi.co/json/");
       setIpInfo(res.data);
 
-      // Build audit data
       const auditData = {
         email: formData.email,
         browserName: resultData.browser.name,
@@ -33,7 +29,7 @@ const Login = () => {
         osName: resultData.os.name,
         osVersion: resultData.os.version,
         userAgent: resultData.ua,
-        ipAddress: res.data.ip, // from ipapi
+        ipAddress: res.data.ip,
         city: res.data.city,
         region: res.data.region,
         country: res.data.country_name,
@@ -43,77 +39,87 @@ const Login = () => {
 
       console.log("Login Data:", formData);
       console.log("Audit Data:", auditData);
-
-     
-
     } catch (err) {
       console.error("Error during login:", err);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-2xl shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-center text-gray-800 dark:text-white">
-          Login to Your Account
+    <div className="min-h-screen flex items-center justify-center bg-black px-4 sm:px-6 lg:px-8">
+      <div className="bg-[#121212] p-6 sm:p-8 rounded-2xl shadow-lg w-full max-w-md border border-orange-500">
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-2">
+          Welcome Back 👋
         </h2>
-        <p className="text-gray-500 dark:text-gray-400 text-center text-sm mb-6">
-          Enter your credentials to continue
+        <p className="text-center text-yellow-400 text-sm sm:text-base mb-6">
+          Please log in to your account
         </p>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* Email */}
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            value={formData.email}
-            onChange={handleChange}
-            autoComplete="username"
-            required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 
-                       focus:ring-2 focus:ring-blue-500 focus:outline-none 
-                       bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-          />
+          <div>
+            <label className="block text-gray-300 text-sm mb-1">Email</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-lg border border-gray-700
+                         focus:ring-2 focus:ring-orange-500 focus:outline-none
+                         bg-black text-white placeholder-gray-400 text-sm sm:text-base"
+            />
+          </div>
 
           {/* Password */}
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            autoComplete="current-password"
-            required
-            className="w-full px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 
-                       focus:ring-2 focus:ring-blue-500 focus:outline-none 
-                       bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white"
-          />
+          <div>
+            <label className="block text-gray-300 text-sm mb-1">Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              className="w-full px-4 py-2 rounded-lg border border-gray-700
+                         focus:ring-2 focus:ring-orange-500 focus:outline-none
+                         bg-black text-white placeholder-gray-400 text-sm sm:text-base"
+            />
+          </div>
 
-          {/* Remember Me + Forgot Password */}
-          <div className="flex items-center justify-between text-sm">
-            <label className="flex items-center gap-2 text-gray-600 dark:text-gray-400">
-              <input type="checkbox" className="rounded" /> Remember me
+          {/* Remember + Forgot */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-2 text-sm mt-2">
+            <label className="flex items-center gap-2 text-gray-300">
+              <input type="checkbox" className="rounded accent-orange-500" />{" "}
+              Remember me
             </label>
-            <a href="#" className="text-blue-500 hover:underline">
+            <a
+              href="#"
+              className="text-orange-400 hover:text-yellow-400 transition-colors"
+            >
               Forgot Password?
             </a>
           </div>
 
-          {/* Submit Button */}
+          {/* Button */}
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 rounded-lg 
-                       hover:bg-blue-700 transition duration-200"
+            className="w-full bg-orange-500 text-white py-2 rounded-lg mt-4 
+                       hover:bg-yellow-500 transition duration-200 font-semibold text-sm sm:text-base"
           >
             Login
           </button>
         </form>
 
         {/* Footer */}
-        <p className="text-center text-sm text-gray-600 dark:text-gray-400 mt-6">
+        <p className="text-center text-sm text-gray-400 mt-6">
           Don’t have an account?{" "}
-          <a href="#" className="text-blue-500 hover:underline">
+          <a
+            href="#"
+            className="text-orange-400 hover:text-yellow-400 transition-colors"
+          >
             Sign Up
           </a>
         </p>

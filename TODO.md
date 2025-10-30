@@ -1,4 +1,5 @@
-# TODO for Adding threeD Route
+# TODO for Improving PizzaDownloadPage.jsx
 
-- [x] Import the `threeD` component in `src/util/routes/AppRoutes.jsx`
-- [x] Add a new route entry `{ path: "/threeD", element: <threeD /> }` under the children array in the router configuration
+- [x] Reduce mobile image height from 60vh to 45vh
+- [x] Reduce mobile image max-width from 280px to 240px
+- [x] Reduce glow background width and height from 400px to 300px
