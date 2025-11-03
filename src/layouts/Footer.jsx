@@ -25,11 +25,11 @@ const Footer = () => {
     <footer
       className={"w-full border-t bg-black text-white border-orange-600"}
     >
-      <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-1 sm:px-6 lg:px-2 py-8">
         {/* Top Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-10">
           {/* Brand Section */}
-          <div>
+          <div >
             <h2
               className={"text-2xl font-extrabold tracking-wide text-white" }
             >
@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
 
           {/* Product Section */}
-          <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:gap-75 ml-5 md:m-13   ">
+          <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:gap-75 ml-5 p-2   ">
             <div>
             <h3
               className={`text-lg font-semibold mb-4 uppercase ${

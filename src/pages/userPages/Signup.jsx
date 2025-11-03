@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useSelector } from "react-redux";
 
 const Signup = () => {
-  const mode = useSelector((state) => state.theme.mode);
-
   const [formData, setFormData] = useState({
     f_name: "",
     l_name: "",
@@ -13,6 +10,7 @@ const Signup = () => {
     birth_date: "",
     photo: null,
     password: "",
+    terms_accepted: false,
   });
 
   // ✅ Fetch designations
@@ -31,8 +29,10 @@ const Signup = () => {
 
   // ✅ Handle input change
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    if (name === "photo" && files.length > 0) {
+    const { name, value, files, type, checked } = e.target;
+    if (type === "checkbox") {
+      setFormData({ ...formData, [name]: checked });
+    } else if (name === "photo" && files.length > 0) {
       setFormData({ ...formData, photo: files[0] });
     } else {
       setFormData({ ...formData, [name]: value });
@@ -61,30 +61,21 @@ console.log(formData);
   };
 
   return (
-    <div
-      className={`h-auto my-14 flex items-center justify-center transition-all duration-500 ${
-        mode === "light"
-          ? "bg-gradient-to-br from-blue-50 to-indigo-100"
-          : "bg-gradient-to-br from-gray-900 to-gray-800"
-      } p-4`}
-    >
-      <div
-        className={`w-full max-w-md rounded-2xl shadow-lg overflow-hidden transition-all duration-500 ${
-          mode === "light" ? "bg-white" : "bg-gray-800"
-        }`}
-      >
-        {/* Header */}
-        <div className="top-0 z-10 px-2 py-2 bg-gradient-to-r from-indigo-500 to-blue-500">
-          <h2 className="text-2xl font-bold text-white text-center">
-            Create Account
-          </h2>
-          <p className="text-indigo-100 text-center mt-1">
-            Join us and start your journey
-          </p>
-        </div>
+    <div className="min-h-screen  flex flex-row  items-center justify-center bg-black px-4 sm:px-6 lg:px-8">
+      <div className="bg-[#121212] p-6 sm:p-8 min-w-[25vh] rounded-2xl shadow-lg w-full max-w-md border border-orange-500">
+        {/* Title */}
+        <h2 className="text-3xl sm:text-4xl font-bold text-center text-white mb-2">
+          Create Your Account
+        </h2>
+        <p className="text-center text-yellow-400 text-sm sm:text-base mb-6">
+          Join us and start your journey
+        </p>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid grid-cols-2 gap-4">
+
+         
           {/* First Name */}
           <InputField
             label="First Name"
@@ -92,7 +83,6 @@ console.log(formData);
             value={formData.f_name}
             onChange={handleChange}
             placeholder="John"
-            mode={mode}
           />
 
           {/* Last Name */}
@@ -102,10 +92,7 @@ console.log(formData);
             value={formData.l_name}
             onChange={handleChange}
             placeholder="Doe"
-            mode={mode}
           />
-
-          
 
           {/* Email */}
           <InputField
@@ -115,7 +102,6 @@ console.log(formData);
             value={formData.email}
             onChange={handleChange}
             placeholder="your@email.com"
-            mode={mode}
           />
 
           {/* Mobile Number */}
@@ -125,17 +111,16 @@ console.log(formData);
             value={formData.mobile_no}
             onChange={handleChange}
             placeholder="Enter Mobile Number"
-            mode={mode}
           />
-
-          {/* Birth Date */}
+          </div>
+         <div className="grid grid-cols-2 gap-4">
+ {/* Birth Date */}
           <InputField
             label="Birth Date"
             name="birth_date"
             type="date"
             value={formData.birth_date}
             onChange={handleChange}
-            mode={mode}
           />
 
           {/* Profile Photo */}
@@ -145,7 +130,6 @@ console.log(formData);
             type="file"
             onChange={handleChange}
             accept="image/*"
-            mode={mode}
           />
 
           {/* Password */}
@@ -156,17 +140,44 @@ console.log(formData);
             value={formData.password}
             onChange={handleChange}
             placeholder="••••••••"
-            mode={mode}
           />
+
+          </div>
+
+          {/* Terms and Conditions Checkbox */}
+          <div className="flex items-center mt-4">
+            <input
+              type="checkbox"
+              name="terms_accepted"
+              checked={formData.terms_accepted}
+              onChange={handleChange}
+              required
+              className="mr-2 h-4 w-4 text-orange-500 focus:ring-orange-500 border-gray-300 rounded"
+            />
+            <label className="text-gray-300 text-sm">
+              I agree to the <a href="#" className="text-orange-400 hover:text-yellow-400">Terms and Conditions</a>
+            </label>
+          </div>
 
           {/* Submit */}
           <button
             type="submit"
-            className="w-full font-semibold py-2 rounded-lg shadow-md bg-indigo-500 hover:bg-indigo-600 text-white"
+            className="w-full bg-orange-500 text-white py-2 rounded-lg mt-4 hover:bg-yellow-500 transition duration-200 font-semibold text-sm sm:text-base"
           >
             Sign Up
           </button>
         </form>
+
+        {/* Footer */}
+        <p className="text-center text-sm text-gray-400 mt-6">
+          Already have an account?{" "}
+          <a
+            href="#"
+            className="text-orange-400 hover:text-yellow-400 transition-colors"
+          >
+            Login
+          </a>
+        </p>
       </div>
     </div>
   );
@@ -180,15 +191,10 @@ const InputField = ({
   onChange,
   placeholder,
   type = "text",
-  mode,
   accept,
 }) => (
   <div>
-    <label
-      className={`block text-sm font-medium mb-1 ${
-        mode === "light" ? "text-gray-700" : "text-gray-300"
-      }`}
-    >
+    <label className="block text-gray-300 text-sm mb-1">
       {label}
     </label>
     <input
@@ -200,11 +206,7 @@ const InputField = ({
       accept={accept}
       required
       autoComplete="off"
-      className={`w-full px-4 py-2 rounded-lg border focus:ring-2 focus:outline-none ${
-        mode === "light"
-          ? "border-gray-300 focus:ring-indigo-400"
-          : "border-gray-600 focus:ring-yellow-400 bg-gray-700 text-white"
-      }`}
+      className="w-full px-4 py-2 rounded-lg border border-gray-700 focus:ring-2 focus:ring-orange-500 focus:outline-none bg-black text-white placeholder-gray-400 text-sm sm:text-base"
     />
   </div>
 );
