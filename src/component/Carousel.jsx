@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { useSelector } from 'react-redux'
 
 const Carousel = () => {
+  const mode = useSelector((state) => state.theme.mode)
+  const carouselRef = useRef(null)
+
   return (
      <section
         className={`py-8 sm:py-12 border-t ${

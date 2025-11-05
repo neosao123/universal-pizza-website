@@ -8,11 +8,13 @@ import {
   Menu,
   X,
   Mail,
+  Search,
 } from "lucide-react";
 
 const Navbar = () => {
   const mode = useSelector((state) => state.theme.mode);
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   
 
   useEffect(() => {
@@ -90,6 +92,18 @@ const Navbar = () => {
               ))}
             </div>
 
+            {/* 🔍 Search Bar */}
+            <div className="hidden lg:flex items-center">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Search pizzas..."
+                  className="w-64 px-4 py-2 bg-gray-800 text-white rounded-lg border border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400 placeholder-gray-400"
+                />
+                <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-orange-400" size={18} />
+              </div>
+            </div>
+
             {/* 🌐 Auth Buttons */}
             <div className="hidden lg:flex items-center space-x-4">
               <a
@@ -121,6 +135,16 @@ const Navbar = () => {
         {/* 📱 Full-Page Mobile Nav */}
         {isOpen && (
           <div className="fixed inset-0 z-50 bg-black/95 text-white flex flex-col items-center justify-center space-y-6 transition-all duration-300">
+            {/* 🔍 Mobile Search Bar */}
+            <div className="relative w-full max-w-xs">
+              <input
+                type="text"
+                placeholder="Search pizzas..."
+                className="w-full px-4 py-2 bg-gray-800 text-white rounded-lg border border-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400 placeholder-gray-400"
+              />
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 text-orange-400" size={18} />
+            </div>
+
             {menuItems.map((item) => (
               <a
                 key={item.name}

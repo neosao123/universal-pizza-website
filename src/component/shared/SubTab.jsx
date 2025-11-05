@@ -18,25 +18,19 @@ const SubTab = ({
   const dispatch = useDispatch();
   const { selectedInnerOptions } = useSelector((state) => state.customization);
   const [quantity, setQuantity] = useState(1);
-  const [selected, setSelected] = useState(selectedInnerOptions || {}); // inner radios per card
-  const prevActiveSubTab = useRef(null);
+  const [selected, setSelected] = useState(selectedInnerOptions[activeTab] || {}); // inner radios per card
+  const prevActiveTab = useRef(null);
 
-  // set selected to loaded selectedInnerOptions
+  // set selected to loaded selectedInnerOptions for the current tab
   useEffect(() => {
-    if (activeSubTab) {
-      setSelected(selectedInnerOptions || {});
+    if (activeTab) {
+      setSelected(selectedInnerOptions[activeTab] || {});
     }
-  }, [activeSubTab, selectedInnerOptions]);
+  }, [activeTab, selectedInnerOptions]);
 
-  // reset selection when tab changes (not on initial load)
-  useEffect(() => {
-    if (activeSubTab && prevActiveSubTab.current !== null && activeSubTab !== prevActiveSubTab.current) {
-      setSelected({});
-      dispatch(setSelectedInnerOptions({}));
-      handleRadioChange([]);
-    }
-    prevActiveSubTab.current = activeSubTab;
-  }, [activeSubTab, dispatch]);
+  // Persist selection across tab changes
+  // Removed reset logic to allow selections to persist
+  // selectedOption is now loaded from Redux per tab
 
   // ensure selectedOption is array
   const selectedArray = Array.isArray(selectedOption)
@@ -51,8 +45,7 @@ const SubTab = ({
   // Build selectedOptions with portion and price
   const selectedOptionsWithDetails = selectedArray.map((optionText) => {
     const item = subTabsObject[activeSubTab]?.find((i) => i.text === optionText);
-    const index = subTabsObject[activeSubTab]?.findIndex((i) => i.text === optionText);
-    const portion = selected[index] || "full"; // default to full if not selected
+    const portion = selected[optionText] || "full"; // default to full if not selected
     // For simplicity, assume price is for full, and portions don't change price; adjust if needed
     return {
       text: optionText,
@@ -92,18 +85,20 @@ const SubTab = ({
       // unselect card
       updated = selectedArray.filter((item) => item !== optionText);
       const newSelected = { ...selected };
-      delete newSelected[index];
+      delete newSelected[optionText];
       setSelected(newSelected);
-      dispatch(setSelectedInnerOptions(newSelected));
+      const updatedInnerOptions = { ...selectedInnerOptions, [activeTab]: newSelected };
+      dispatch(setSelectedInnerOptions(updatedInnerOptions));
     } else {
       // select card → set default inner radio “full”
       updated = [...selectedArray, optionText];
       const newSelected = {
         ...selected,
-        [index]: "full", // default radio
+        [optionText]: "full", // default radio
       };
       setSelected(newSelected);
-      dispatch(setSelectedInnerOptions(newSelected));
+      const updatedInnerOptions = { ...selectedInnerOptions, [activeTab]: newSelected };
+      dispatch(setSelectedInnerOptions(updatedInnerOptions));
     }
     handleRadioChange(updated);
   };
@@ -154,7 +149,7 @@ const SubTab = ({
                     onClick={(e) => e.stopPropagation()} // stop outer select
                   >
                     {options.map((option) => {
-                      const isInnerSelected = selected[index] === option.id;
+                      const isInnerSelected = selected[item.text] === option.id;
                       const isDisabled = !isSelected;
 
                       return (
@@ -166,17 +161,18 @@ const SubTab = ({
                         >
                           <input
                             type="radio"
-                            name={`segment-${index}`}
+                            name={`segment-${item.text}`}
                             value={option.id}
                             checked={isInnerSelected}
                             disabled={isDisabled}
                             onChange={() => {
                               const newSelected = {
                                 ...selected,
-                                [index]: option.id,
+                                [item.text]: option.id,
                               };
                               setSelected(newSelected);
-                              dispatch(setSelectedInnerOptions(newSelected));
+                              const updatedInnerOptions = { ...selectedInnerOptions, [activeTab]: newSelected };
+                              dispatch(setSelectedInnerOptions(updatedInnerOptions));
                             }}
                             className="hidden"
                           />

@@ -10,7 +10,7 @@ const loadCustomizationFromStorage = () => {
       activeTab: "DOUGH",
       activeSubTab: null,
       previewImage: null, // Will be set based on product
-      selectedOption: "",
+      selectedOptions: {}, // object to store selections per tab
       selectedInnerOptions: {}, // for inner radio selections in toppings
     };
   } catch (e) {
@@ -58,7 +58,12 @@ const customizationSlice = createSlice({
     setActiveTab: (state, action) => {
       state.activeTab = action.payload;
       state.activeSubTab = null; // Reset subTab when tab changes
-      state.selectedOption = ""; // Reset selected option
+      // Load selectedOption for the new tab
+      state.selectedOption = state.selectedOptions[action.payload] || "";
+      // Ensure selectedInnerOptions has an entry for the new tab
+      if (!state.selectedInnerOptions[action.payload]) {
+        state.selectedInnerOptions[action.payload] = {};
+      }
       saveCustomizationToStorage(state);
     },
     setActiveSubTab: (state, action) => {
@@ -67,6 +72,8 @@ const customizationSlice = createSlice({
     },
     setSelectedOption: (state, action) => {
       state.selectedOption = action.payload;
+      // Store selection per tab
+      state.selectedOptions[state.activeTab] = action.payload;
       saveCustomizationToStorage(state);
     },
     setSelectedInnerOptions: (state, action) => {

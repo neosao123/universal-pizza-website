@@ -12,6 +12,7 @@ const Signup = () => {
     password: "",
     terms_accepted: false,
   });
+  const [designations, setDesignations] = useState([]);
 
   // ✅ Fetch designations
   useEffect(() => {
