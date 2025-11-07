@@ -5,15 +5,16 @@ import Login from './pages/userPages/Login'
 import Signup from './pages/userPages/Signup'
 import About from './pages/userPages/About'
 import Services from "./pages/userPages/Services"
-import Dashboard from './pages/userPages/Dashboard'
+
 import Layouts from './layouts/Layouts' 
+import Homepage from './pages/Homepage'
 
 const AppRoutes = createBrowserRouter([
   {
     path: "/",
     element: <Layouts />, 
     children: [
-      { path: "/", element: <Dashboard /> },
+      { path: "/", element: <Homepage /> },
       { path: "/contact", element: <Contact /> },
       { path: "/services", element: <Services /> },
       { path: "/about", element: <About /> },

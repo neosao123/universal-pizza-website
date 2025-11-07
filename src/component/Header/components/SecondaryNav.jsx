@@ -39,7 +39,4 @@ const SecondaryNav = () => {
   );
 };
 
-
-
-//
 export default SecondaryNav;

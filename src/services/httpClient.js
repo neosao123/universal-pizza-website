@@ -1,13 +1,13 @@
 import axios from "axios";
 
 const httpClient = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+ baseURL: import.meta.env.VITE_BASE_URL || "https://admin.panjabpizza.ca/api/v1",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
-// Request Interceptor
+
 httpClient.interceptors.request.use((config) => {
   const token = localStorage.getItem("authToken");
   if (token) {

@@ -25,12 +25,11 @@ const Profile = ({ compact = false }) => {
     );
   }
 
-  // --- Full Profile Card (Standalone Page) ---
   return (
     <div
       className={` relative w-full max-w-3xl mx-auto bg-gradient-to-r from-white/80 via-white/60 to-white/80 dark:from-gray-900/70 dark:via-gray-900/50 dark:to-gray-900/70 backdrop-blur-xl shadow-lg border border-gray-200/50 dark:border-gray-700/50 rounded-2xl p-5 flex items-center justify-between transition-all duration-500 hover:shadow-2xl hover:scale-[1.01]`}
     >
-      {/* Left - Profile Info */}
+   
       <div className="flex items-center space-x-5">
         <img
           src="https://via.placeholder.com/60"

@@ -1,10 +1,8 @@
-// src/components/Navbar/Navbar.jsx
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import TopNav from "./TopNav";
 import MainNav from "./MainNav";
-import SecondaryNav from "./SecondaryNav";   // IMPORTED HERE
+import SecondaryNav from "./SecondaryNav";   
 import MobileMenu from "./MobileMenu";
 import { toast } from "react-toastify";
 
@@ -14,7 +12,6 @@ const Navbar = () => {
   const { user } = useSelector((state) => state);
   const navigate = useNavigate();
 
-  // Dummy cart (replace with real Redux later)
   const cart = { 
     grandtotal: 25.99, 
     product: [
@@ -38,10 +35,7 @@ const Navbar = () => {
 
   return (
     <>
-      {/* 1. Top Bar */}
-      <TopNav />
-
-
+  
       <MainNav
         onMenuToggle={() => setMobileMenuOpen(true)}
         cart={cart}
